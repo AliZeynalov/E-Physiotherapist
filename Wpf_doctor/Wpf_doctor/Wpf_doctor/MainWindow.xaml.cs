@@ -39,12 +39,12 @@ namespace login_hatice
             OleDbCommand cmd;
             OleDbDataReader dr;
             String name = textbox1.Text;
-            String password = textbox2.Text;
+            String password = textbox2.Password;
             con = new OleDbConnection("Provider=Microsoft.ACE.Oledb.12.0;Data Source=login.accdb");
             cmd = new OleDbCommand();
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT * FROM users where username='" + textbox1.Text + "' AND upassword='" + textbox2.Text + "'";
+            cmd.CommandText = "SELECT * FROM users where username='" + textbox1.Text + "' AND upassword='" + textbox2.Password + "'";
             dr = cmd.ExecuteReader();
             if (dr.Read())
             {
