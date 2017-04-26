@@ -5,21 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:login_hatice"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="500">
-    <Window.Background>
-        <ImageBrush ImageSource="img/back.jpg"/>
-    </Window.Background>
-    <Grid Margin="117,164,164,110">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="349*"/>
-            <ColumnDefinition Width="184*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="319,465,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Foreground="#FF080808" Background="#FFDDDDDD" Height="{DynamicResource {x:Static SystemParameters.WindowCaptionHeightKey}}" RenderTransformOrigin="1.387,0.652" Grid.ColumnSpan="2"/>
-        <TextBox Name="textbox1" HorizontalAlignment="Left" Height="25" Margin="296,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" TextChanged="textbox1_TextChanged" Grid.ColumnSpan="2"/>
-        <PasswordBox Name="textbox2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="132" PasswordChar="*" MaxLength="8" Margin="296,392,0,0" Grid.ColumnSpan="2"/>
-        <Label Content="User Name" HorizontalAlignment="Left" Margin="180,324,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.034,-0.833" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="180,392,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="16" FontWeight="Bold"/>
-       
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button Content="Login" HorizontalAlignment="Left" Margin="297,182,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox Name="textbox1" HorizontalAlignment="Left" Height="23" Margin="262,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textbox1_TextChanged"/>
+        <TextBox Name="textbox2" HorizontalAlignment="Left" Height="23" Margin="262,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="User Name" HorizontalAlignment="Left" Margin="150,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.034,-0.833"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="159,112,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
