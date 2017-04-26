@@ -11,7 +11,7 @@
     </Window.Background>
     <Grid>
         <Label x:Name="listlabel" Content="Patient List" Height="50" VerticalAlignment="Top" Margin="330,91,958.6,0" FontSize="20" FontFamily="Arial Black" Foreground="#FF126C8C"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="216" VerticalAlignment="Top" Width="409" Margin="195,141,0,0" Background="#FFA0BCD4" >
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="216" VerticalAlignment="Top" Width="409" Margin="195,141,0,0" Background="#FFA0BCD4" SelectionChanged="listView_SelectionChanged" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
@@ -46,22 +46,18 @@
 
 
 
-        <Canvas HorizontalAlignment="Left" Height="496" Margin="678,141,0,0" VerticalAlignment="Top" Width="695">
+        <Canvas HorizontalAlignment="Left" Height="412" Margin="693,141,0,0" VerticalAlignment="Top" Width="695">
             <Label x:Name="label1" Content="View Patient Profile" Canvas.Left="234" Canvas.Top="-50" Height="39" Width="242" FontFamily="Arial Black" FontSize="20" Foreground="#FF126C8C"/>
-            <Border BorderBrush="#FF126C8C" BorderThickness="3" Height="476" Canvas.Left="10" Canvas.Top="10" Width="675">
-
-            </Border>
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" Height="24" Canvas.Left="250" Canvas.Top="37" SelectionChanged="comboBox_SelectionChanged"/>
-            <Button x:Name="savebtn" Content="Save/Modify" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="19" Canvas.Left="64" Canvas.Top="387" Click="savebtn_Click"/>
-            <Button x:Name="delbutton" Content="Delete Patient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Canvas.Left="234" Canvas.Top="387" Click="delbutton_Click"/>
-            <Label x:Name="label7" Content="Name: " HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="64" Width="91" Height="30" Canvas.Top="216"/>
-            <Label x:Name="label8" Content="E-Mail: " Canvas.Left="64" Canvas.Top="265"/>
-            <Label x:Name="label9" Content="ID: " Canvas.Left="64" Canvas.Top="170"/>
-            <TextBox x:Name="idtb" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Canvas.Left="165" Canvas.Top="173" IsEnabled="False"/>
-            <TextBox x:Name="nametb" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Canvas.Left="165" Canvas.Top="220" IsEnabled="False"/>
-            <TextBox x:Name="mailtb" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="161" Canvas.Left="165" Canvas.Top="267" IsEnabled="False"/>
-            <Label x:Name="label10" Content="Motions" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="509" Canvas.Top="117" FontWeight="Bold" Foreground="#FF126C8C"/>
-            <Canvas HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="218" Canvas.Left="427" Canvas.Top="147">
+            <Button x:Name="savebtn" Content="Save/Modify" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="19" Canvas.Left="64" Canvas.Top="290" Click="savebtn_Click"/>
+            <Button x:Name="delbutton" Content="Delete Patient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Canvas.Left="206" Canvas.Top="289" Click="delbutton_Click"/>
+            <Label x:Name="label7" Content="Name: " HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="64" Width="91" Height="30" Canvas.Top="177"/>
+            <Label x:Name="label8" Content="E-Mail: " Canvas.Left="64" Canvas.Top="237"/>
+            <Label x:Name="label9" Content="ID: " Canvas.Left="64" Canvas.Top="121"/>
+            <TextBox x:Name="idtb" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Canvas.Left="165" Canvas.Top="116" IsEnabled="False"/>
+            <TextBox x:Name="nametb" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Canvas.Left="165" Canvas.Top="177" IsEnabled="False"/>
+            <TextBox x:Name="mailtb" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="161" Canvas.Left="165" Canvas.Top="237" IsEnabled="False"/>
+            <Label x:Name="label10" Content="Motions" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="509" Canvas.Top="30" FontWeight="Bold" Foreground="#FF126C8C"/>
+            <Canvas HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="218" Canvas.Left="431" Canvas.Top="73">
                 <Border BorderBrush="#FF126C8C" BorderThickness="2" Height="190" Width="218"/>
                 <CheckBox x:Name="shouldercb" Content="Shoulder" Canvas.Left="122" Canvas.Top="145"/>
                 <CheckBox x:Name="armcb" Content="Arm" Canvas.Left="122" Canvas.Top="86"/>
@@ -70,9 +66,16 @@
                 <CheckBox x:Name="stretchcb" Content="Stretch" Canvas.Left="28" Canvas.Top="86"/>
                 <CheckBox x:Name="hipcb" Content="Hip" Canvas.Left="122" Canvas.Top="26"/>
             </Canvas>
+            <Border BorderBrush="#FF126C8C" BorderThickness="3" Height="392" Canvas.Left="10" Canvas.Top="10" Width="675"/>
         </Canvas>
-        <Button x:Name="outbtn" Content="Logout" HorizontalAlignment="Left" Margin="1323,10,-0.4,0" VerticalAlignment="Top" Width="111" Click="outbtn_Click"/>
+        <Button x:Name="outbtn" Content="Logout" HorizontalAlignment="Left" Margin="1099,584,0,0" VerticalAlignment="Top" Width="111" Click="outbtn_Click"/>
         <Image x:Name="image" Source="img/logo.png" HorizontalAlignment="Left" Height="131" Margin="847,666,0,0" VerticalAlignment="Top" Width="409"/>
+        <Button x:Name="definebtn" Content="Define Motion" HorizontalAlignment="Left" Margin="847,584,0,0" VerticalAlignment="Top" Width="119" Click="definebtn_Click"/>
+        <TextBox x:Name="fromtb" HorizontalAlignment="Left" Height="23" Margin="676,626,0,0" TextWrapping="Wrap" Text="From" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="subjecttb" HorizontalAlignment="Left" Height="23" Margin="676,666,0,0" TextWrapping="Wrap" Text="Subject" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="msgtb" HorizontalAlignment="Left" Height="60" Margin="676,708,0,0" TextWrapping="Wrap" Text="Message" VerticalAlignment="Top" Width="155"/>
+        <Button x:Name="sendbtn" Content="Send" HorizontalAlignment="Left" Margin="676,782,0,0" VerticalAlignment="Top" Width="75" Click="sendbtn_Click"/>
+        <PasswordBox x:Name="passtb" HorizontalAlignment="Left" Margin="676,604,0,0" VerticalAlignment="Top" Width="120" Height="17"  PasswordChar="*"/>
 
 
 

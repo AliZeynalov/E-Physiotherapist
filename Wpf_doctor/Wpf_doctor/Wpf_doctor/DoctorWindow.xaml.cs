@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.OleDb;
 using System.Data;
+using System.Net.Mail;
+using System.Net;
 
 namespace Wpf_doctor
 {
@@ -62,7 +64,7 @@ namespace Wpf_doctor
                 if (username != "admin")
                 {
                     this.listView.Items.Add(new MyItem { Id = id, Name = name, Email = mail });
-                    comboBox.Items.Add(name);
+                    //comboBox.Items.Add(name);
 
                 }
                 this.listView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Id", System.ComponentModel.ListSortDirection.Ascending));
@@ -145,7 +147,7 @@ namespace Wpf_doctor
             this.Close();
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+       /* private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             shouldercb.IsChecked = false;
             armcb.IsChecked = false;
@@ -204,7 +206,7 @@ namespace Wpf_doctor
 
 
             con.Close();
-        }
+        }*/
 
         private void savebtn_Click(object sender, RoutedEventArgs e)
         {
@@ -266,7 +268,11 @@ namespace Wpf_doctor
             cmd = new OleDbCommand();
             con.Open();
             cmd.Connection = con;
-            string selectedcmb = comboBox.SelectedItem.ToString();
+            
+            //string selectedcmb = comboBox.SelectedItem.ToString();
+
+            var selectedItem = (dynamic)listView.SelectedItems[0];
+            String selectedcmb = selectedItem.Name;
 
             cmd.CommandText = "update users set [shoulder] = ?, [knee] = ?, [neck] = ?, [arm] = ?, [stretch] = ?, [hip] = ? where pname=? ";
             cmd.Parameters.AddWithValue("?", x1);
@@ -298,12 +304,133 @@ namespace Wpf_doctor
             cmd = new OleDbCommand();
             con.Open();
             cmd.Connection = con;
-            string selectedcmb = comboBox.SelectedItem.ToString();
+            //string selectedcmb = comboBox.SelectedItem.ToString();
+            var selectedItem = (dynamic)listView.SelectedItems[0];
+            String selectedcmb = selectedItem.Name;
             cmd.CommandText = "delete from users where pname = '"+selectedcmb+"'";
             cmd.ExecuteNonQuery();
             MessageBox.Show("Patient Deleted");
             
             con.Close();
+        }
+
+        private void definebtn_Click(object sender, RoutedEventArgs e)
+        {
+            Wpf_doctor.DefineMotion win4 = new Wpf_doctor.DefineMotion();
+            win4.Show();
+            this.Close();
+        }
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            shouldercb.IsChecked = false;
+            armcb.IsChecked = false;
+            kneecb.IsChecked = false;
+            neckcb.IsChecked = false;
+            hipcb.IsChecked = false;
+            stretchcb.IsChecked = false;
+
+
+
+            var selectedItem = (dynamic)listView.SelectedItems[0];
+            String selectedcmb = selectedItem.Name;
+
+            OleDbConnection con;
+            OleDbCommand cmd;
+            OleDbDataReader dr;
+
+            con = new OleDbConnection("Provider=Microsoft.ACE.Oledb.12.0;Data Source=login.accdb");
+            cmd = new OleDbCommand();
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT * FROM users where pname ='" + selectedcmb + "'";
+            dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string a = dr["id"].ToString();
+                int id = Int32.Parse(a);
+                String name = dr["pname"].ToString();
+                String mail = dr["mail"].ToString();
+                nametb.Text = name;
+                mailtb.Text = mail;
+                idtb.Text = a;
+                if (dr["shoulder"].ToString() == "True")
+                {
+                    shouldercb.IsChecked = true;
+                }
+                if (dr["neck"].ToString() == "True")
+                {
+                    neckcb.IsChecked = true;
+                }
+                if (dr["arm"].ToString() == "True")
+                {
+                    armcb.IsChecked = true;
+                }
+                if (dr["knee"].ToString() == "True")
+                {
+                    kneecb.IsChecked = true;
+                }
+                if (dr["hip"].ToString() == "True")
+                {
+                    hipcb.IsChecked = true;
+                }
+                if (dr["stretch"].ToString() == "True")
+                {
+                    stretchcb.IsChecked = true;
+                }
+            }
+
+
+            con.Close();
+        }
+
+        private void sendbtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var subj = subjecttb.Text;
+                var msg = msgtb.Text;
+                var from = fromtb.Text;
+                var to = mailtb.Text;
+                var pass = passtb.Password;
+                /*var message = new MailMessage("'" + from + "'", "'" + to + "'");
+                //message.Subject = "Deneme";
+                //message.Body = "Mesaj Geldi";
+                message.Subject = subj;
+                message.Body = msg;
+                SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587);
+                mailer.Credentials = new NetworkCredential("'" + from + "'", "'" + pass + "'");
+                mailer.EnableSsl = true;
+                mailer.Send(message);*/
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress(from);
+                mail.To.Add(to);
+                mail.Subject = subj;
+
+                StringBuilder sbBody = new StringBuilder();
+
+                sbBody.AppendLine(msg);
+
+                mail.Body = sbBody.ToString();
+
+                
+                SmtpServer.Credentials = new System.Net.NetworkCredential(from,pass);
+                SmtpServer.Port = 587;
+                SmtpServer.EnableSsl = true;
+                
+
+
+                SmtpServer.Send(mail);
+                
+                MessageBox.Show("Mail Sended to "+to+"");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 
