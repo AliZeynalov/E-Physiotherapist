@@ -141,7 +141,7 @@ namespace Wpf_doctor
         private void outbtn_Click(object sender, RoutedEventArgs e)
         {
             
-            login_hatice.MainWindow win3 = new login_hatice.MainWindow();
+            Wpf_doctor.Auth win3 = new Wpf_doctor.Auth();
             win3.Show();
             this.Close();
         }

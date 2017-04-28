@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\asus\documents\visual studio 2015\Projects\Wpf_doctor\Wpf_doctor\App.xaml
-3-857967650
+4-1459326395
 
-12-1180843803
+13-1086370310
 13738642453
-DefineMotion.xaml;DoctorWindow.xaml;MainWindow.xaml;
+Auth.xaml;DefineMotion.xaml;DoctorWindow.xaml;Patient.xaml;
 
 False
 

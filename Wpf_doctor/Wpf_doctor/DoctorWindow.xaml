@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf_doctor"
         mc:Ignorable="d"
-        Title="Doctor" Height="861.574" Width="1439.815">
+        Title="Doctor" Height="860" Width="1300"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize">
     <Window.Background>
         <ImageBrush ImageSource="img/back.jpg"/>
     </Window.Background>
     <Grid>
-        <Label x:Name="listlabel" Content="Patient List" Height="50" VerticalAlignment="Top" Margin="330,91,958.6,0" FontSize="20" FontFamily="Arial Black" Foreground="#FF126C8C"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="216" VerticalAlignment="Top" Width="409" Margin="195,141,0,0" Background="#FFA0BCD4" SelectionChanged="listView_SelectionChanged" >
+        <Label x:Name="listlabel" Content="Patient List" Height="34" VerticalAlignment="Top" Margin="171,32,968.6,0" FontSize="20" FontFamily="Arial Black" Foreground="#FF126C8C"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="216" VerticalAlignment="Top" Width="409" Margin="48,91,0,0" Background="#FFA0BCD4" SelectionChanged="listView_SelectionChanged" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
@@ -25,7 +27,7 @@
 
         </ListView>
 
-        <Canvas x:Name="addPatient" HorizontalAlignment="Left" Height="407" VerticalAlignment="Top" Width="409" Margin="195,390,0,0" Background="#FFA0BCD4">
+        <Canvas x:Name="addPatient" HorizontalAlignment="Left" Height="407" VerticalAlignment="Top" Width="409" Margin="47,340,0,0" Background="#FFA0BCD4">
 
             <Label x:Name="addlabel" Content="Add New Patient" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="114" Width="179" Canvas.Top="5" FontWeight="Bold" Foreground="#FF126C8C" FontSize="20" Height="50"/>
             <TextBox x:Name="nametxt" Height="27" TextWrapping="Wrap" Width="176" Canvas.Left="206" Canvas.Top="60" GotFocus="name_GotFocus"/>
@@ -46,7 +48,7 @@
 
 
 
-        <Canvas HorizontalAlignment="Left" Height="412" Margin="693,141,0,0" VerticalAlignment="Top" Width="695">
+        <Canvas HorizontalAlignment="Left" Height="412" Margin="531,82,0,0" VerticalAlignment="Top" Width="695">
             <Label x:Name="label1" Content="View Patient Profile" Canvas.Left="234" Canvas.Top="-50" Height="39" Width="242" FontFamily="Arial Black" FontSize="20" Foreground="#FF126C8C"/>
             <Button x:Name="savebtn" Content="Save/Modify" HorizontalAlignment="Left" VerticalAlignment="Top" Width="218" Height="19" Canvas.Left="431" Canvas.Top="337" Click="savebtn_Click"/>
             <Button x:Name="delbutton" Content="Delete Patient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="218" Canvas.Left="431" Canvas.Top="372" Click="delbutton_Click"/>
@@ -75,9 +77,9 @@
             <Label x:Name="label13" Content="Message:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="64" Canvas.Top="208"/>
             <Border BorderBrush="#FF126C8C" BorderThickness="3" Height="392" Canvas.Top="10" Width="675"/>
         </Canvas>
-        <Button x:Name="outbtn" Content="Logout" HorizontalAlignment="Left" Margin="1099,584,0,0" VerticalAlignment="Top" Width="111" Click="outbtn_Click"/>
-        <Image x:Name="image" Source="img/logo.png" HorizontalAlignment="Left" Height="131" Margin="847,666,0,0" VerticalAlignment="Top" Width="409"/>
-        <Button x:Name="definebtn" Content="Define Motion" HorizontalAlignment="Left" Margin="847,584,0,0" VerticalAlignment="Top" Width="119" Click="definebtn_Click"/>
+        <Button x:Name="outbtn" Content="Logout" HorizontalAlignment="Left" Margin="937,525,0,0" VerticalAlignment="Top" Width="111" Click="outbtn_Click"/>
+        <Image x:Name="image" Source="img/logo.png" HorizontalAlignment="Left" Height="131" Margin="685,607,0,0" VerticalAlignment="Top" Width="409"/>
+        <Button x:Name="definebtn" Content="Define Motion" HorizontalAlignment="Left" Margin="685,525,0,0" VerticalAlignment="Top" Width="119" Click="definebtn_Click"/>
 
 
 
